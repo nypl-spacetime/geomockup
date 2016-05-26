@@ -1,0 +1,124 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>spacetime</title>
+<link rel='shortcut icon' href='../favicon.ico'>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" media="all" href="normalize.css" />
+<link rel="stylesheet" media="all" href="styles.css" />
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v1.0.0-rc.1/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet/v1.0.0-rc.1/leaflet.js"></script>
+<script src="mockup.js"></script>
+
+</head>
+<body>
+
+<div id="header">
+  <div class="logos">
+    <div class="nypl"><a id="nypl" href="//nypl.org" target="_blank">&#x57;</a></div>
+    <div class="where"><a href="/"><span class="desktop">Space/Time Directory</span><span class="mobile" aria-hidden="true">Home</span></a> : Where?</div>
+  </div>
+
+  <div class="service">
+    <div class="score">
+      <div class="count">1208</div>
+      <a href="#" class="progress" id="view-link">Save score</a>
+      <div id="providers">
+        <ul>
+          <li><a href="#"><span>Sign in with</span> Google</a></li>
+          <li><a href="#"><span>Sign in with</span> Twitter</a></li>
+          <li><a href="#"><span>Sign in with</span> Github</a></li>
+          <li><a href="#"><span>Sign in with</span> Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="utils">
+      <a href="#" class="about"><span class="desktop">About</span><span class="mobile" aria-hidden="true">ⓘ</span></a>
+      <a href="#" class="help"><span class="desktop">Help</span><span class="mobile" aria-hidden="true">?</span></a>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div id="item">
+    <img src="item.jpg" />
+  </div>
+
+  <div id="information">
+    <div id="resizer"><span class="desktop">⋮</span><span class="mobile" aria-hidden="true">…</span></div>
+    <div id="metadata">
+      <h1>New York Institution for the Instruction of the Deaf and Dumb</h1>
+      <h3>From: <a href="http://digitalcollections.nypl.org/collections/the-eno-collection-of-new-york-city-views#/?tab=about" target="_blank">The Eno collection of New York City views</a></h3>
+      <div class="external">
+        Open new tab with search on:<br />
+        <a href="http://digitalcollections.nypl.org/items/5e66b3e8-fa64-d471-e040-e00a180654d7" target="_blank">NYPL Digital Collections</a>
+        <a href="#" target="_blank">Google</a>
+        <a href="#" target="_blank">Wikipedia</a>
+        <a href="#" target="_blank">Map Warper</a>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step" id="step1">
+        <div id="annotator">
+          <form action="" name="geocoder" id="geocoder">
+            <input type="text" name="query" id="query" />
+            <input type="submit" name="geocode" value="Find" />
+          </form>
+          <div id="map"></div>
+        </div>
+        <div class="buttons">
+          <a href="#" class="skip">Skip</a>
+          <a href="#" class="submit" id="submit">Submit</a>
+        </div>
+      </div>
+
+      <div class="step" id="step2">
+        <div class="wrap">
+          <h1>Thank you!</h1>
+          <p>[ Animated owl ]</p>
+          <p>The location has been recorded. You can <a href="javascript:goNextStep()">locate another image</a> or tell us <a href="#">which way the camera is looking at</a> in the image you just located.</p>
+        </div>
+        <div class="buttons">
+          <a href="javascript:goNextStep()" class="skip">Try the camera</a>
+          <a href="#" class="submit moved">Another image</a>
+        </div>
+      </div>
+
+      <div class="step" id="step3">
+        <div class="wrap">
+          [ Camera tool here ]
+        </div>
+        <div class="buttons">
+          <a href="#" class="skip">Skip</a>
+          <a href="javascript:goNextStep()" class="submit moved">Submit</a>
+        </div>
+      </div>
+
+      <div class="step" id="step4">
+        <div class="wrap">
+          <h1>Thank you!</h1>
+          <p>[ Animated bat ]</p>
+          <p>The camera direction has been recorded.<br /><a href="javascript:goNextStep()">Locate another image?</a></p>
+        </div>
+        <div class="buttons">
+          <a href="#" class="submit moved">Another image!</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+window.onload = function () {
+  init();
+}
+</script>
+
+</body>
+</html>

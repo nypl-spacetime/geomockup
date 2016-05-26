@@ -1,0 +1,605 @@
+@import "bourbon/bourbon";
+
+$fontPath: "./fonts/";
+$iconFontFamily: "nyplicons";
+
+$nypl-red: #d0343a;
+$nypl-dark-red: #97272c;
+$nypl-gray: #76777b;
+$nypl-dark-gray: darken($nypl-gray, 50%);
+$nypl-light-gray: lighten($nypl-gray, 40%);
+$nypl-blue: #0071ce;
+$nypl-green: #799a05;
+$nypl-light-green: #c5d5a5;
+$nypl-teal: #00a1b0;
+$nypl-purple: #8a1a9c;
+$nypl-light-yellow: #f9e08e;
+
+$bp-mobile: 800px;
+$info-width: 500px;
+$info-height: 300px;
+$controls-height: 75px;
+$resizer-width: 20px;
+$nypl-light: "kievit light", sans-serif;
+$nypl-bold: "kievit bold", sans-serif;
+
+
+@include keyframes(bounce) {
+  0% {
+    @include transform(translateY(-600px));
+  }
+  20%, 100% {
+    @include transform(translateY(0));
+  }
+  60% {
+    @include transform(translateY(-30px));
+  }
+}
+
+@include keyframes(grow) {
+  0% {
+    @include transform(scale(0));
+  }
+  20%, 100% {
+    @include transform(scale(1));
+  }
+  60% {
+    @include transform(scale(0.5));
+  }
+}
+
+@mixin font-face($fontFamily, $path, $fontFilename) {
+    font-family: $fontFamily;
+    src: url('#{$path}#{$fontFilename}.eot');
+    src: url('#{$path}#{$fontFilename}.eot?#iefix') format('embedded-opentype'),
+        url('#{$path}#{$fontFilename}.svg##{$fontFilename}') format('svg'),
+        url('#{$path}#{$fontFilename}.woff') format('woff'),
+        url('#{$path}#{$fontFilename}.ttf') format('truetype');
+}
+
+@mixin drr-icon($content: "none") {
+  content: attr(data-icon);
+  @if ( $content != "none") {
+    content: "#{$content}";
+  }
+  font-family: $iconFontFamily;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  vertical-align: baseline;
+  background: none;
+  margin-top: 0;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-transform: none;
+  // line-height: 1;
+  font-weight: normal;
+  font-variant: normal;
+}
+
+@mixin bp($size) {
+  @media screen and (min-width: 0px) and (max-width: $size) { @content; }
+}
+
+@font-face{
+    font-family:"kievit light";
+    font-style:normal;
+    font-weight:800;
+    src:url("http://ux-static.nypl.org.s3-website-us-east-1.amazonaws.com/ff_kievit_web/KievitWeb-Light.woff") format('woff');}
+
+@font-face{
+    font-family:"kievit bold";
+    font-style:bold;
+    font-weight:800;
+    src:url("http://ux-static.nypl.org.s3-website-us-east-1.amazonaws.com/ff_kievit_web/KievitWeb-Bold.woff") format('woff');}
+
+@font-face {
+  @include font-face($iconFontFamily, $fontPath, 'icomoon');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  font-size: 18px;
+
+  @include bp($bp-mobile) {
+    font-size: 14px;
+  }
+}
+
+body {
+  bottom: 0;
+  font-family: $nypl-light;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+a {
+  color: $nypl-red;
+  text-decoration: none;
+}
+
+#nypl {
+  @include drr-icon('');
+  font-size: 30px;
+  color: white;
+  margin-right: 10px;
+
+  @include bp($bp-mobile) {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+}
+
+#header {
+  background-color: $nypl-dark-gray;
+  color: white;
+  height: 50px;
+  line-height: 1.5;
+  font-size: 1.2rem;
+
+  @include bp($bp-mobile) {
+    font-size: 1rem;
+    height: 30px;
+  }
+
+  .desktop {
+    @include bp($bp-mobile) {
+      display: none;
+    }
+  }
+
+  .mobile {
+    display: none;
+
+    @include bp($bp-mobile) {
+      display: inline;
+    }
+  }
+
+  .logos {
+    display: inline-block;
+    margin-left: 10px;
+
+    a {
+      // color: white;
+    }
+
+    .nypl {
+      float: left;
+    }
+
+    .where {
+      display: inline-block;
+      margin-top: 0.6rem;
+
+      @include bp($bp-mobile) {
+        margin-top: 0.4rem;
+      }
+    }
+  }
+
+  .service {
+    float: right;
+    margin-right: 10px;
+    text-align: right;
+
+    @include bp($bp-mobile) {
+      margin-top: 0.2rem;
+    }
+  }
+
+  .logos, .service {
+  }
+
+  .score {
+    display: inline-block;
+    margin-right: 1rem;
+    position: relative;
+
+    @include bp($bp-mobile) {
+      margin-right: 0.3rem;
+    }
+
+    .count {
+      display: inline-block;
+      font-family: $nypl-bold;
+      font-size: 2.3rem;
+
+      @include bp($bp-mobile) {
+        font-size: 1.3rem;
+      }
+    }
+
+    .progress {
+      text-transform: uppercase;
+      font-size: 0.7em;
+
+      @include bp($bp-mobile) {
+        font-size: 0.6em;
+      }
+    }
+
+    #providers {
+      border-radius: 3px;
+      display: none;
+      position: absolute;
+      right: 0;
+      width: 220px;
+      z-index: 1;
+
+      @include bp($bp-mobile) {
+        width: 140px;
+      }
+
+      &.active {
+        display: block;
+      }
+
+      &:after {
+        border: 10px solid transparent;
+        border-bottom-color: $nypl-gray;
+        content: "";
+        height: 0;
+        right: 10px;
+        top: -20px;
+        position: absolute;
+        width: 0;
+
+        @include bp($bp-mobile) {
+          border-width: 5px;
+          top: -10px;
+        }
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        &:first-child a {
+          border-radius: 3px 3px 0 0;
+        }
+
+        &:last-child a {
+          border-radius: 0 0 3px 3px;
+        }
+      }
+
+      a {
+        background-color: $nypl-gray;
+        color: white;
+        display: block;
+        padding: 0.7em 1em;
+        text-align: left;
+
+        span {
+          font-size: 0.7em;
+        }
+
+        &:hover {
+          background-color: $nypl-dark-gray;
+        }
+      }
+    }
+  }
+
+  .utils {
+    display: inline-block;
+
+    a {
+      color: white;
+      // font-size: 1.3rem;
+      margin-right: 1rem;
+
+      @include bp($bp-mobile) {
+        margin-right: 0.3rem;
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;
+      }
+    }
+  }
+}
+
+.wrapper {
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 50px;
+
+  @include bp($bp-mobile) {
+    top: 30px;
+  }
+}
+
+#item {
+  background-color: $nypl-dark-gray;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+
+  @include bp($bp-mobile) {
+    right: 0;
+    bottom: $info-width;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+#information {
+  bottom: 0;
+  background-color: white;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  @include bp($bp-mobile) {
+    left: 0;
+    top: auto;
+  }
+}
+
+#resizer {
+  background-color: $nypl-gray;
+  bottom: 0;
+  color: white;
+  cursor: col-resize;
+  display: block;
+  left: -1 * $resizer-width;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: $resizer-width;
+
+  &.active {
+    background-color: $nypl-dark-gray;
+  }
+
+  @include bp($bp-mobile) {
+    bottom: auto;
+    cursor: row-resize;
+    height: $resizer-width;
+    left: 0;
+    right: 0;
+    top: -1 * $resizer-width;
+    width: auto;
+  }
+
+  span {
+    color: $nypl-light-gray;
+    display: block;
+    font-size: 3rem;
+    height: 50px;
+    margin-top: -25px;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 2px $nypl-dark-gray;
+    top: 50%;
+    width: 100%;
+
+    &.desktop {
+      @include bp($bp-mobile) {
+        display: none;
+      }
+    }
+
+    &.mobile {
+      display: none;
+
+      @include bp($bp-mobile) {
+        display: block;
+        top: 20%;
+      }
+    }
+
+  }
+}
+
+#metadata {
+  background-color: $nypl-light-gray;
+  height: $info-height;
+  overflow-y: scroll;
+  padding: 0 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+
+  .external a {
+    background-color: $nypl-teal;
+    border-radius: 1rem;
+    color: white;
+    display: inline-block;
+    margin-top: 0.35rem;
+    padding: 0.35rem 0.7rem 0.3rem;
+  }
+}
+
+
+.steps {
+  background-color: $nypl-green;
+  bottom: 0;
+  font-size: 1rem;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: $info-height;
+
+  .wrap {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    padding: 10px 30px 10px 10px;
+  }
+
+  p {
+
+  }
+
+  .step, #step1, #step2, #step3 {
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 100%;
+    z-index: 2;
+
+    @include transition(left 0.2s);
+
+    &.hidden {
+      left: -100%;
+      z-index: 1;
+    }
+
+    &.active {
+      left: 0%;
+      z-index: 3;
+    }
+  }
+
+  #step1 {
+  }
+
+  #step2 {
+  }
+
+  #step3 {
+  }
+}
+
+#annotator {
+  bottom: $controls-height;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#map {
+  background-color: $nypl-green;
+  height: 100%;
+  width: 100%;
+
+
+  .map-marker {
+
+    &:after {
+      background-color: $nypl-gray;
+      content: "";
+      border-radius: 20px / 10px;
+      display: block;
+      filter: opacity(30%);
+      height: 10px;
+      margin-left: -10px;
+      margin-top: 5px;
+      width: 20px;
+      z-index: -1;
+
+      @include animation(grow 0.4s forwards ease-out);
+    }
+
+    .location {
+      background-color: $nypl-green;
+      border-radius: 1rem;
+      color: white;
+      cursor: grab;
+      font-family: $nypl-light;
+      font-size: 0.9rem;
+      height: 60px;
+      line-height: 1;
+      margin-left: -50px;
+      margin-top: -70px;
+      position: relative;
+      text-align: center;
+      width: 100px;
+
+      @include animation(bounce 0.4s forwards ease-out);
+
+      .here {
+        display: block;
+        font-size: 1.4rem;
+        padding: 10px 0 2px 0;
+      }
+
+      &:after {
+        border: 10px solid transparent;
+        border-top-color: $nypl-green;
+        content: "";
+        height: 0;
+        left: 40px;
+        bottom: -20px;
+        position: absolute;
+        width: 0;
+      }
+    }
+  }
+}
+
+#geocoder {
+  background-color: transparent;
+  font-size: 0.8rem;
+  left: 40px;
+  right: 10px;
+  text-align: right;
+  top: 10px;
+  position: absolute;
+  z-index: 1111;
+
+  input[type="text"] {
+    border-radius: 5px;
+    border: 1px solid $nypl-light-gray;
+    padding: 0.5rem 0.75rem;
+    width: 160px;
+  }
+
+  input[type="submit"] {
+    background-color: $nypl-green;
+    border-radius: 1rem;
+    border: none;
+    color: white;
+    padding: 0.4rem 0.75rem 0.3rem;
+    text-transform: uppercase;
+  }
+}
+
+.buttons {
+  bottom: 0;
+  font-size: 1.5rem;
+  height: $controls-height;
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+  }
+
+  .submit {
+    background-color: $nypl-light-gray;
+    border-radius: 2rem;
+    color: white;
+    display: inline-block;
+    margin: 15px 1rem;
+    padding: 0.7rem 1.7rem 0.5rem;
+    text-transform: uppercase;
+
+    &.moved {
+      background-color: $nypl-red;
+    }
+  }
+
+}
