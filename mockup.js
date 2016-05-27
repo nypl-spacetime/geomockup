@@ -5,11 +5,11 @@ var item
 var map
 var info
 var step = 0
-var minSize = 300
+var minSize = 500
 var resizeMode = "horizontal"
 var infoSize = 0
 var defaultSize = 0
-var defaultSizeH = 360
+var defaultSizeH = 500
 var defaultSizeV = 200
 var resizerSize = 30
 var startPos
@@ -55,7 +55,7 @@ function removeHidden(e) {
 
 function toggleProviders(e) {
   document.getElementById("providers").classList.toggle("active")
-  e.preventDefault()
+  if (e) e.preventDefault()
 }
 
 function updateDivs() {
@@ -116,7 +116,7 @@ function dragMove(e) {
 function dragEnd(e) {
   dragging = false
   resizer.classList.remove("active")
-  e.preventDefault()
+  // e.preventDefault()
 }
 
 function createMap() {
