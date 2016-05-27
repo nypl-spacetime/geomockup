@@ -276,21 +276,21 @@ a {
   color: white;
   cursor: col-resize;
   display: block;
-  left: -20px;
+  left: -30px;
   overflow: hidden;
   position: absolute;
   top: 0;
-  width: 20px; }
+  width: 30px; }
   #resizer.active {
     background-color: black; }
   @media screen and (min-width: 0px) and (max-width: 800px) {
     #resizer {
       bottom: auto;
       cursor: row-resize;
-      height: 20px;
+      height: 30px;
       left: 0;
       right: 0;
-      top: -20px;
+      top: -30px;
       width: auto; } }
   #resizer span {
     color: #dededf;
@@ -311,24 +311,32 @@ a {
       @media screen and (min-width: 0px) and (max-width: 800px) {
         #resizer span.mobile {
           display: block;
-          top: 20%; } }
+          top: 30%; } }
 
 #metadata {
   background-color: #dededf;
   height: 300px;
   overflow-y: scroll;
-  padding: 0 10px;
+  -webkit-overflow-scrolling: touch;
   position: absolute;
   right: 0;
   top: 0;
   left: 0; }
-  #metadata .external a {
-    background-color: #00a1b0;
-    border-radius: 1rem;
-    color: white;
-    display: inline-block;
-    margin-top: 0.35rem;
-    padding: 0.35rem 0.7rem 0.3rem; }
+  @media screen and (min-width: 0px) and (max-width: 800px) {
+    #metadata {
+      font-size: 0.9em;
+      max-height: 30%; } }
+  #metadata h1, #metadata h3, #metadata p, #metadata div {
+    padding: 0 10px; }
+  #metadata .external {
+    margin-bottom: 3em; }
+    #metadata .external a {
+      background-color: #00a1b0;
+      border-radius: 1rem;
+      color: white;
+      display: inline-block;
+      margin-top: 0.35rem;
+      padding: 0.35rem 0.7rem 0.3rem; }
 
 .steps {
   background-color: #799a05;
@@ -339,6 +347,10 @@ a {
   position: absolute;
   right: 0;
   top: 300px; }
+  @media screen and (min-width: 0px) and (max-width: 800px) {
+    .steps {
+      min-height: 70%;
+      top: 30%; } }
   .steps .wrap {
     font-size: 1.2rem;
     line-height: 1.4;
@@ -363,6 +375,7 @@ a {
 #annotator {
   bottom: 75px;
   left: 0;
+  overflow: hidden;
   position: absolute;
   right: 0;
   top: 0; }

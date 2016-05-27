@@ -19,7 +19,7 @@ $bp-mobile: 800px;
 $info-width: 500px;
 $info-height: 300px;
 $controls-height: 75px;
-$resizer-width: 20px;
+$resizer-width: 30px;
 $nypl-light: "kievit light", sans-serif;
 $nypl-bold: "kievit bold", sans-serif;
 
@@ -401,7 +401,7 @@ a {
 
       @include bp($bp-mobile) {
         display: block;
-        top: 20%;
+        top: 30%;
       }
     }
 
@@ -412,19 +412,32 @@ a {
   background-color: $nypl-light-gray;
   height: $info-height;
   overflow-y: scroll;
-  padding: 0 10px;
+  -webkit-overflow-scrolling: touch;
   position: absolute;
   right: 0;
   top: 0;
   left: 0;
 
-  .external a {
-    background-color: $nypl-teal;
-    border-radius: 1rem;
-    color: white;
-    display: inline-block;
-    margin-top: 0.35rem;
-    padding: 0.35rem 0.7rem 0.3rem;
+  @include bp($bp-mobile) {
+    font-size: 0.9em;
+    max-height: 30%;
+  }
+
+  h1, h3, p, div {
+    padding: 0 10px;
+  }
+
+  .external {
+    margin-bottom: 3em;
+
+    a {
+      background-color: $nypl-teal;
+      border-radius: 1rem;
+      color: white;
+      display: inline-block;
+      margin-top: 0.35rem;
+      padding: 0.35rem 0.7rem 0.3rem;
+    }
   }
 }
 
@@ -438,6 +451,11 @@ a {
   position: absolute;
   right: 0;
   top: $info-height;
+
+  @include bp($bp-mobile) {
+    min-height: 70%;
+    top: 30%;
+  }
 
   .wrap {
     font-size: 1.2rem;
@@ -483,6 +501,7 @@ a {
 #annotator {
   bottom: $controls-height;
   left: 0;
+  overflow: hidden;
   position: absolute;
   right: 0;
   top: 0;
@@ -492,7 +511,6 @@ a {
   background-color: $nypl-green;
   height: 100%;
   width: 100%;
-
 
   .map-marker {
 

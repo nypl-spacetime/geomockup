@@ -5,12 +5,14 @@ var item
 var map
 var info
 var step = 0
-var minSize = 100
+var minSize = 300
 var resizeMode = "horizontal"
 var infoSize = 0
 var defaultSize = 0
 var defaultSizeH = 360
 var defaultSizeV = 200
+var resizerSize = 30
+var startPos
 
 function init () {
   item = document.getElementById("item")
@@ -79,6 +81,8 @@ function updateDivs() {
 function dragStart(e) {
   dragging = true
   resizer.classList.add("active")
+  var xy = e.clientY ? {x:e.clientX, y:e.clientY} : {x:e.pageX, y:e.pageY}
+  startPos = resizeMode == "horizontal" ? xy.x - info.offsetLeft : xy.y - info.offsetTop
   window.addEventListener("mousemove", dragMove)
   window.addEventListener("touchmove", dragMove)
   e.preventDefault()
@@ -91,18 +95,21 @@ function dragMove(e) {
   if (resizeMode == "horizontal") {
     var clientX = e.clientX ? e.clientX : e.pageX
     var width = window.innerWidth - clientX
+    if (startPos != undefined) width += startPos
     if (width >= minSize && clientX >= minSize) {
       infoSize = width
       updateDivs()
     }
   } else {
+    minSize = resizerSize
     var clientY = e.clientY ? e.clientY : e.pageY
+    if (startPos != undefined) clientY -= startPos
     if (clientY >= minSize && clientY + minSize < window.innerHeight) {
       infoSize = clientY
       updateDivs()
     }
   }
-  console.log(resizeMode, infoSize)
+  // console.log(resizeMode, infoSize)
   e.preventDefault()
 }
 
@@ -145,6 +152,11 @@ function createMap() {
       e.preventDefault()
       goNextStep()
     })
+  })
+
+  map.on('move', function(e) {
+    if (!hereMarker) return
+    hereMarker.setLatLng(map.getCenter())
   })
 
   map.addLayer(layer)
