@@ -355,6 +355,9 @@ a {
     font-size: 1.2rem;
     line-height: 1.4;
     padding: 10px 30px 10px 10px; }
+    @media screen and (min-width: 0px) and (max-width: 800px) {
+      .steps .wrap {
+        font-size: 1.0rem; } }
   .steps .step, .steps #step1, .steps #step2, .steps #step3 {
     background-color: white;
     position: absolute;
@@ -412,6 +415,7 @@ a {
     position: relative;
     text-align: center;
     width: 100px;
+    z-index: 1;
     -webkit-animation: bounce 0.4s forwards ease-out;
     -moz-animation: bounce 0.4s forwards ease-out;
     animation: bounce 0.4s forwards ease-out; }
@@ -459,6 +463,9 @@ a {
   position: absolute;
   right: 0;
   text-align: center; }
+  @media screen and (min-width: 0px) and (max-width: 800px) {
+    .buttons {
+      font-size: 1.2rem; } }
   .buttons a {
     text-decoration: none; }
   .buttons .submit {

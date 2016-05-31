@@ -461,6 +461,10 @@ a {
     font-size: 1.2rem;
     line-height: 1.4;
     padding: 10px 30px 10px 10px;
+
+    @include bp($bp-mobile) {
+      font-size: 1.0rem;
+    }
   }
 
   p {
@@ -543,6 +547,7 @@ a {
       position: relative;
       text-align: center;
       width: 100px;
+      z-index: 1;
 
       @include animation(bounce 0.4s forwards ease-out);
 
@@ -601,6 +606,10 @@ a {
   position: absolute;
   right: 0;
   text-align: center;
+
+  @include bp($bp-mobile) {
+    font-size: 1.2rem;
+  }
 
   a {
     text-decoration: none;
