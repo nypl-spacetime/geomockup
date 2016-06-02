@@ -13,6 +13,7 @@ var defaultSizeH = 500
 var defaultSizeV = 200
 var resizerSize = 30
 var startPos
+var xy
 
 function init () {
   item = document.getElementById("item")
@@ -20,8 +21,10 @@ function init () {
   resizer = document.getElementById("resizer")
   resizer.addEventListener("mousedown", dragStart)
   resizer.addEventListener("touchstart", dragStart)
+  resizer.addEventListener("click", infoToggle)
   window.addEventListener("mouseup", dragEnd)
   window.addEventListener("touchend", dragEnd)
+  window.addEventListener("touchend", infoToggle)
   window.addEventListener("resize", windowResize)
   document.getElementById("view-link").addEventListener("click", toggleProviders)
 
@@ -81,7 +84,7 @@ function updateDivs() {
 function dragStart(e) {
   dragging = true
   resizer.classList.add("active")
-  var xy = e.clientY ? {x:e.clientX, y:e.clientY} : {x:e.pageX, y:e.pageY}
+  xy = e.clientY ? {x:e.clientX, y:e.clientY} : {x:e.pageX, y:e.pageY}
   startPos = resizeMode == "horizontal" ? xy.x - info.offsetLeft : xy.y - info.offsetTop
   window.addEventListener("mousemove", dragMove)
   window.addEventListener("touchmove", dragMove)
@@ -116,7 +119,30 @@ function dragMove(e) {
 function dragEnd(e) {
   dragging = false
   resizer.classList.remove("active")
-  // e.preventDefault()
+  window.removeEventListener("mousemove", dragMove)
+  window.removeEventListener("touchmove", dragMove)
+}
+
+function infoToggle(e) {
+  var pos = e.clientY ? {x:e.clientX, y:e.clientY} : {x:e.pageX, y:e.pageY}
+  if (pos.x != xy.x && pos.y != xy.y) return
+  if (resizeMode == "horizontal") {
+    var width = info.clientWidth
+    if (width < minSize || width == window.innerWidth - minSize) {
+      infoSize = minSize
+    } else {
+      infoSize = window.innerWidth - minSize
+    }
+  } else {
+    minSize = resizerSize
+    var clientY = info.clientHeight
+    if (clientY < (window.innerHeight - minSize) * 0.5) {
+      infoSize = minSize
+    } else {
+      infoSize = window.innerHeight - minSize
+    }
+  }
+  updateDivs()
 }
 
 function createMap() {
